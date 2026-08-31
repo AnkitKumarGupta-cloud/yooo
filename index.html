@@ -30,8 +30,8 @@
     .btn-nav { display: flex; align-items: center; gap: 7px; background: var(--indigo); color: #fff; border: none; padding: 10px 20px; border-radius: 9px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Poppins', sans-serif; white-space: nowrap; }
 
     /* HERO */
-    .hero { display: flex; align-items: center; padding: 64px 56px 48px; gap: 40px; min-height: calc(100vh - 70px); overflow: hidden; }
-    .hero-left { flex: 1; max-width: 500px; }
+    .hero { display: flex; align-items: center; padding: 64px 56px 48px; gap: 40px; min-height: calc(100vh - 70px); overflow: hidden; position: relative; }
+    .hero-left { flex: 1; max-width: 500px; position: relative; z-index: 2; }
     .badge { display: inline-flex; align-items: center; gap: 7px; background: var(--orange-light); color: var(--orange); font-size: 11px; font-weight: 700; letter-spacing: .4px; padding: 6px 14px; border-radius: 20px; margin-bottom: 22px; }
     .hero-h1 { font-size: 54px; font-weight: 900; line-height: 1.12; margin-bottom: 18px; }
     .h1-dark   { display: block; color: var(--dark); }
@@ -51,15 +51,39 @@
     .proof-sub { font-size: 12px; color: var(--mid); }
 
     /* HERO RIGHT */
-    .hero-right { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; min-height: 500px; }
-    .blob-purple { position: absolute; width: 400px; height: 400px; background: var(--indigo-light); border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; top: 50%; left: 50%; transform: translate(-44%, -50%); z-index: 0; }
-    .blob-yellow { position: absolute; width: 130px; height: 130px; background: var(--yellow-light); border-radius: 46% 54% 40% 60% / 55% 40% 60% 45%; bottom: 2%; right: 5%; z-index: 0; }
-    .dot-grid { position: absolute; top: 5%; right: 3%; z-index: 0; opacity: .4; }
-    .hero-img { position: relative; z-index: 2; width: 340px; height: 400px; object-fit: cover; border-radius: 24px; display: block; }
-    .chess-fb { position: relative; z-index: 2; width: 340px; height: 400px; background: linear-gradient(135deg,#6366f1,#4F46E5 50%,#3730a3); border-radius: 24px; display: none; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
-    .chess-fb .kn { font-size: 100px; line-height: 1; }
-    .chess-fb p { color: rgba(255,255,255,.7); font-size: 14px; font-weight: 500; }
-    .float-card { position: absolute; background: #fff; border-radius: 16px; padding: 14px 18px; box-shadow: 0 10px 40px rgba(0,0,0,.14); z-index: 4; }
+    .hero-right {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 500px;
+    }
+
+    /* Background image fills the right half */
+    .hero-bg-img {
+      position: absolute;
+      inset: -20px -20px -20px -40px;
+      background: url('https://ankitkumargupta-cloud.github.io/yooo/bg.png') center/cover no-repeat;
+      border-radius: 24px;
+      z-index: 0;
+      opacity: 0.92;
+    }
+
+    /* Boy image */
+    .hero-boy {
+      position: relative;
+      z-index: 2;
+      width: 360px;
+      height: 420px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 20px;
+      display: block;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.18));
+    }
+
+    .float-card { position: absolute; background: #fff; border-radius: 16px; padding: 14px 18px; box-shadow: 0 10px 40px rgba(0,0,0,.18); z-index: 4; }
     .fc-top { top: 6%; left: 2%; max-width: 165px; }
     .fc-bottom { bottom: 8%; right: 3%; max-width: 165px; }
     .fc-icon { font-size: 26px; margin-bottom: 6px; }
@@ -85,8 +109,9 @@
       .nav-links { display: none; }
       .hero { flex-direction: column; padding: 40px 20px 32px; min-height: auto; }
       .hero-left { max-width: 100%; }
-      .hero-h1 { font-size: 38px; }
-      .hero-right { width: 100%; min-height: 380px; }
+      .hero-h1 { font-size: 36px; }
+      .hero-right { width: 100%; min-height: 360px; }
+      .hero-boy { width: 280px; height: 320px; }
       .stats-bar { padding: 24px 20px; gap: 20px; }
     }
   </style>
@@ -149,23 +174,11 @@
   </div>
 
   <div class="hero-right">
-    <div class="blob-purple"></div>
-    <div class="blob-yellow"></div>
-    <svg class="dot-grid" width="88" height="72" viewBox="0 0 88 72"><g fill="#4F46E5">
-      <circle cx="8"  cy="8"  r="3.5"/><circle cx="28" cy="8"  r="3.5"/><circle cx="48" cy="8"  r="3.5"/><circle cx="68" cy="8"  r="3.5"/><circle cx="88" cy="8"  r="3.5"/>
-      <circle cx="8"  cy="28" r="3.5"/><circle cx="28" cy="28" r="3.5"/><circle cx="48" cy="28" r="3.5"/><circle cx="68" cy="28" r="3.5"/><circle cx="88" cy="28" r="3.5"/>
-      <circle cx="8"  cy="48" r="3.5"/><circle cx="28" cy="48" r="3.5"/><circle cx="48" cy="48" r="3.5"/><circle cx="68" cy="48" r="3.5"/><circle cx="88" cy="48" r="3.5"/>
-      <circle cx="8"  cy="68" r="3.5"/><circle cx="28" cy="68" r="3.5"/><circle cx="48" cy="68" r="3.5"/><circle cx="68" cy="68" r="3.5"/><circle cx="88" cy="68" r="3.5"/>
-    </g></svg>
+    <div class="hero-bg-img"></div>
 
-    <img class="hero-img"
-      src="https://images.unsplash.com/photo-1560174038-da43ac74f01b?w=680&q=80"
-      alt="Child playing chess"
-      onerror="this.style.display='none';document.querySelector('.chess-fb').style.display='flex';" />
-    <div class="chess-fb">
-      <div class="kn">♞</div>
-      <p>Gupta Chess Academy</p>
-    </div>
+    <img class="hero-boy"
+      src="https://ankitkumargupta-cloud.github.io/yooo/boy.png"
+      alt="Student playing chess at Gupta Chess Academy" />
 
     <div class="float-card fc-top">
       <div class="fc-icon">🏆</div>
